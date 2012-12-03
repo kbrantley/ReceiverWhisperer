@@ -13,5 +13,9 @@ namespace ReceiverWhisperer.Core {
 
         void StepUp();
         void StepDown();
+
+        void SubscribeVolumeChanges(ReceiverEventHandler e);
+        void SubscribeMuteChanges(ReceiverEventHandler e);
+
     }
 }

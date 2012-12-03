@@ -10,5 +10,9 @@ namespace ReceiverWhisperer.Core {
         double DisplayBrightnessPercent { get; set; }
         void DisplayBrightnessStep();
         int SleepTimer { get; set; }
+
+        void SubscribePowerChanges(ReceiverEventHandler e);
+        void SubscribeSleepChanges(ReceiverEventHandler e);
+        void SubscribeDisplayBrightnessChanges(ReceiverEventHandler e);
     }
 }

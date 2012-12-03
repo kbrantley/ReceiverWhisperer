@@ -6,6 +6,7 @@ using ReceiverWhisperer.Core;
 
 namespace ReceiverWhisperer.Onkyo {
     class Power : PowerManagement {
+        /* Internal use only */
         private OnkyoReceiver _receiver;
         private bool _isPowered;
         private int _displayBrightness;
@@ -13,6 +14,12 @@ namespace ReceiverWhisperer.Onkyo {
         private int _displayBrightnessMin;
         private int _sleepTimeRemaining;
 
+        /* External facing events */
+        private event ReceiverEventHandler OnPowerChanged;
+        private event ReceiverEventHandler OnSleepChanged;
+        private event ReceiverEventHandler OnDisplayBrightnessChanged;
+
+        /*  Interface defined fields */
         public bool IsPowered {
             get { return _isPowered; }
             set { SetPower(value); }
@@ -85,13 +92,20 @@ namespace ReceiverWhisperer.Onkyo {
         }
 
         private void PowerEvent(Object sender, MessageEventArgs e) {
+            bool old = _isPowered;
             if (e.Message == "PWR00")
                 _isPowered = false;
             else if (e.Message == "PWR01")
                 _isPowered = true;
+
+            if (old != _isPowered)
+                if (OnPowerChanged != null)
+                    OnPowerChanged(this, new PowerEventArgs(_isPowered));
         }
 
         private void DisplayBrightnessEvent(Object sender, MessageEventArgs e) {
+            int old = _displayBrightness;
+
             if (e.Message == "DIM00")
                 _displayBrightness = 100;
             else if (e.Message == "DIM01")
@@ -102,12 +116,42 @@ namespace ReceiverWhisperer.Onkyo {
                 _displayBrightness = 1;
             else if (e.Message == "DIM08")
                 _displayBrightness = 0;
+
+            if (old != _displayBrightness)
+                if (OnDisplayBrightnessChanged != null)
+                    OnDisplayBrightnessChanged(this, new DisplayBrightnessEventArgs(_displayBrightness));
         }
 
         private void SleepTimerEvent(Object sender, MessageEventArgs e) {
             try {
+                int old = _sleepTimeRemaining;
                 _sleepTimeRemaining = Int32.Parse(e.Message.Substring(3), System.Globalization.NumberStyles.HexNumber);
+
+                if (old != _sleepTimeRemaining)
+                    if (OnSleepChanged != null)
+                        OnSleepChanged(this, new SleepEventArgs(_sleepTimeRemaining));
             } catch (Exception) { } // assume that the response was 'SLPN/A' and disregard
+        }
+        
+        public void SubscribePowerChanges(ReceiverEventHandler e) {
+            if (OnPowerChanged == null)
+                OnPowerChanged = new ReceiverEventHandler(e);
+            else
+                OnPowerChanged += new ReceiverEventHandler(e);
+        }
+
+        public void SubscribeSleepChanges(ReceiverEventHandler e) {
+            if (OnSleepChanged == null)
+                OnSleepChanged = new ReceiverEventHandler(e);
+            else
+                OnSleepChanged += new ReceiverEventHandler(e);
+        }
+
+        public void SubscribeDisplayBrightnessChanges(ReceiverEventHandler e) {
+            if (OnDisplayBrightnessChanged == null)
+                OnDisplayBrightnessChanged = new ReceiverEventHandler(e);
+            else
+                OnDisplayBrightnessChanged = new ReceiverEventHandler(e);
         }
     }
 }
