@@ -78,6 +78,13 @@ namespace ReceiverWhisperer.Onkyo.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap brandlogo {
+            get {
+                object obj = ResourceManager.GetObject("brandlogo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Frequency.
         /// </summary>
