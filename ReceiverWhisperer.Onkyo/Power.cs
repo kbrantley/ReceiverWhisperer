@@ -11,7 +11,6 @@ namespace ReceiverWhisperer.Onkyo {
         private bool _isPowered;
         private int _displayBrightness;
         private int _displayBrightnessMax;
-        private int _displayBrightnessMin;
         private int _sleepTimeRemaining;
 
         /* External facing events */
@@ -42,7 +41,6 @@ namespace ReceiverWhisperer.Onkyo {
 
         public Power(OnkyoReceiver receiver) {
             _displayBrightnessMax = 100;
-            _displayBrightnessMin = 0;
             _receiver = receiver;
             _receiver._ipp.Subscribe("PWR", PowerEvent);
             _receiver._ipp.Subscribe("DIM", DisplayBrightnessEvent);
