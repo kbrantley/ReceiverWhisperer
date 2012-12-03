@@ -40,6 +40,10 @@ namespace ReceiverWhisperer.Onkyo {
             _receiver._ipp.Subscribe("PWR", PowerEvent);
             _receiver._ipp.Subscribe("DIM", DisplayBrightnessEvent);
             _receiver._ipp.Subscribe("SLP", SleepTimerEvent);
+            _receiver._ipp.Subscribe("OnConnect", OnConnect);
+        }
+
+        private void OnConnect(Object sender, EventArgs e) {
             new OutboundPacket(_receiver, "PWRQSTN");
             new OutboundPacket(_receiver, "DIMQSTN");
             new OutboundPacket(_receiver, "SLPQSTN");

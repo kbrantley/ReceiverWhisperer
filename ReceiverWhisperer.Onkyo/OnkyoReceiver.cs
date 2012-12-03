@@ -35,7 +35,6 @@ namespace ReceiverWhisperer.Onkyo {
             this.IPAddress = IPAddress;
             this.Port = Port;
             _ipp = new InboundPacketProcessor(this);
-            Connect();
             _volume = new Volume(this);
             _power = new Power(this);
         }

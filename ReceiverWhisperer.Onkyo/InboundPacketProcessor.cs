@@ -27,6 +27,9 @@ namespace ReceiverWhisperer.Onkyo {
         }
 
         public void ProcessPacketLoop() {
+            if (eventDictionary.ContainsKey("OnConnect"))
+                eventDictionary["OnConnect"](this, null);
+
             while (!_shouldStop) {
                 try {
                     InboundPacket packet = new InboundPacket(_receiver._stream);

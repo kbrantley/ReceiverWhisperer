@@ -22,6 +22,10 @@ namespace ReceiverWhisperer.Onkyo {
             MaximumVolume = 0x50;
             _receiver._ipp.Subscribe("MVL", VolumeChanged);
             _receiver._ipp.Subscribe("AMT", MuteChanged);
+            _receiver._ipp.Subscribe("OnConnect", OnConnect);
+        }
+
+        public void OnConnect(Object sender, EventArgs e) {
             new OutboundPacket(_receiver, "MVLQSTN");
             new OutboundPacket(_receiver, "AMTQSTN");
         }

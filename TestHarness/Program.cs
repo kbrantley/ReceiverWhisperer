@@ -9,6 +9,7 @@ namespace TestHarness {
     class Program {
         static void Main(string[] args) {
             Receiver r = new OnkyoReceiver("TX-NR515", "10.254.254.98", 60128);
+            r.Connect();
             Console.WriteLine("Power status: " + r.PowerManagement.IsPowered);
             r.PowerManagement.IsPowered = true;
             r.Disconnect();
