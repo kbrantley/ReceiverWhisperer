@@ -37,7 +37,7 @@ namespace OnkyoRawCLI {
                     quitting = true;
                     ipp.RequestStop();
                     new OutboundPacket(receiverStream, "MVLQSTN");
-                } else {
+                } else if (msg.Trim().Length > 0) {
                     Console.WriteLine("<--" + msg);
                     new OutboundPacket(receiverStream, msg);
                 }
