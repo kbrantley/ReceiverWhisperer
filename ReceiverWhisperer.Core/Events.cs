@@ -49,4 +49,13 @@ namespace ReceiverWhisperer.Core {
     }
     #endregion
 
+    #region Inputs
+    public class InputEventArgs : ReceiverEventArgs {
+        public Input Input { get; private set; }
+        public InputEventArgs(Input input) {
+            Input = input;
+        }
+    }
+    #endregion
+
 }

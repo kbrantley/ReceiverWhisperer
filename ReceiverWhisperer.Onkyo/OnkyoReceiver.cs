@@ -13,6 +13,7 @@ namespace ReceiverWhisperer.Onkyo {
         internal InboundPacketProcessor _ipp;
         private VolumeControl _volume;
         private Power _power;
+        private InputSelector _input;
         private Thread _networkThread;
 
         public string Name { get; private set; }
@@ -20,15 +21,9 @@ namespace ReceiverWhisperer.Onkyo {
         public int Port { get; private set; }
         public bool IsConnected { get; private set; }
 
-        public IEnumerable<Input> ValidInputs {
-            get { throw new NotImplementedException(); }
-        }
-        public Input CurrentInput {
-            get { throw new NotImplementedException(); }
-        }
-
         public VolumeControl VolumeControl { get { return _volume; } }
         public PowerManagement PowerManagement { get { return _power; } }
+        public InputSelector Inputs { get { return _input; } }
 
         public OnkyoReceiver(String Name, String IPAddress, int Port) {
             this.Name = Name;
@@ -37,6 +32,7 @@ namespace ReceiverWhisperer.Onkyo {
             _ipp = new InboundPacketProcessor(this);
             _volume = new Volume(this);
             _power = new Power(this);
+            _input = new OnkyoInputSelector(this);
         }
 
         public void Connect() {
@@ -59,6 +55,15 @@ namespace ReceiverWhisperer.Onkyo {
                 _networkThread.Join();
                 IsConnected = false;
             }
+        }
+
+
+        public IEnumerable<Input> ValidInputs {
+            get { throw new NotImplementedException(); }
+        }
+
+        public Input CurrentInput {
+            get { throw new NotImplementedException(); }
         }
     }
 }

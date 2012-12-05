@@ -83,6 +83,8 @@
   <ItemGroup>
     <Compile Include="InboundPacket.cs" />
     <Compile Include="InboundPacketProcessor.cs" />
+    <Compile Include="OnkyoInput.cs" />
+    <Compile Include="OnkyoInputSelector.cs" />
     <Compile Include="OnkyoReceiver.cs" />
     <Compile Include="OutboundPacket.cs" />
     <Compile Include="Power.cs" />

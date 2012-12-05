@@ -16,6 +16,8 @@ namespace ReceiverWhisperer.Core {
         PowerManagement PowerManagement { get; }
         VolumeControl VolumeControl { get; }
 
+        InputSelector Inputs { get; }
+
         IEnumerable<Input> ValidInputs { get; }
         Input CurrentInput { get; }
     }
