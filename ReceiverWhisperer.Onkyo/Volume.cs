@@ -19,8 +19,8 @@ namespace ReceiverWhisperer.Onkyo {
         public bool Muted { get { return _isMuted; } set { SetMuted(value); } }
 
         /* External facing events */
-        private event ReceiverEventHandler OnVolumeChanged;
-        private event ReceiverEventHandler OnMuteChanged;
+        private event VolumeEventHandler OnVolumeChanged;
+        private event MuteEventHandler OnMuteChanged;
 
         public Volume(OnkyoReceiver receiver) {
             this._receiver = receiver;
@@ -88,18 +88,18 @@ namespace ReceiverWhisperer.Onkyo {
                     OnMuteChanged(this, new MuteEventArgs(_isMuted));
         }
 
-        public void SubscribeVolumeChanges(ReceiverEventHandler e) {
+        public void SubscribeVolumeChanges(VolumeEventHandler e) {
             if (OnVolumeChanged == null)
-                OnVolumeChanged = new ReceiverEventHandler(e);
+                OnVolumeChanged = new VolumeEventHandler(e);
             else
-                OnVolumeChanged += new ReceiverEventHandler(e);
+                OnVolumeChanged += new VolumeEventHandler(e);
         }
 
-        public void SubscribeMuteChanges(ReceiverEventHandler e) {
+        public void SubscribeMuteChanges(MuteEventHandler e) {
             if (OnMuteChanged == null)
-                OnMuteChanged = new ReceiverEventHandler(e);
+                OnMuteChanged = new MuteEventHandler(e);
             else
-                OnMuteChanged += new ReceiverEventHandler(e);
+                OnMuteChanged += new MuteEventHandler(e);
         }
     }
 }

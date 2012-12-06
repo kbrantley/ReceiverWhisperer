@@ -14,9 +14,9 @@ namespace ReceiverWhisperer.Onkyo {
         private int _sleepTimeRemaining;
 
         /* External facing events */
-        private event ReceiverEventHandler OnPowerChanged;
-        private event ReceiverEventHandler OnSleepChanged;
-        private event ReceiverEventHandler OnDisplayBrightnessChanged;
+        private event PowerEventHandler OnPowerChanged;
+        private event SleepEventHandler OnSleepChanged;
+        private event DisplayBrightnessEventHandler OnDisplayBrightnessChanged;
 
         /*  Interface defined fields */
         public bool IsPowered {
@@ -131,25 +131,25 @@ namespace ReceiverWhisperer.Onkyo {
             } catch (Exception) { } // assume that the response was 'SLPN/A' and disregard
         }
         
-        public void SubscribePowerChanges(ReceiverEventHandler e) {
+        public void SubscribePowerChanges(PowerEventHandler e) {
             if (OnPowerChanged == null)
-                OnPowerChanged = new ReceiverEventHandler(e);
+                OnPowerChanged = new PowerEventHandler(e);
             else
-                OnPowerChanged += new ReceiverEventHandler(e);
+                OnPowerChanged += new PowerEventHandler(e);
         }
 
-        public void SubscribeSleepChanges(ReceiverEventHandler e) {
+        public void SubscribeSleepChanges(SleepEventHandler e) {
             if (OnSleepChanged == null)
-                OnSleepChanged = new ReceiverEventHandler(e);
+                OnSleepChanged = new SleepEventHandler(e);
             else
-                OnSleepChanged += new ReceiverEventHandler(e);
+                OnSleepChanged += new SleepEventHandler(e);
         }
 
-        public void SubscribeDisplayBrightnessChanges(ReceiverEventHandler e) {
+        public void SubscribeDisplayBrightnessChanges(DisplayBrightnessEventHandler e) {
             if (OnDisplayBrightnessChanged == null)
-                OnDisplayBrightnessChanged = new ReceiverEventHandler(e);
+                OnDisplayBrightnessChanged = new DisplayBrightnessEventHandler(e);
             else
-                OnDisplayBrightnessChanged = new ReceiverEventHandler(e);
+                OnDisplayBrightnessChanged = new DisplayBrightnessEventHandler(e);
         }
     }
 }

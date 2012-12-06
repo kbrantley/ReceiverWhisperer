@@ -11,8 +11,8 @@ namespace ReceiverWhisperer.Core {
         void DisplayBrightnessStep();
         int SleepTimer { get; set; }
 
-        void SubscribePowerChanges(ReceiverEventHandler e);
-        void SubscribeSleepChanges(ReceiverEventHandler e);
-        void SubscribeDisplayBrightnessChanges(ReceiverEventHandler e);
+        void SubscribePowerChanges(PowerEventHandler e);
+        void SubscribeSleepChanges(SleepEventHandler e);
+        void SubscribeDisplayBrightnessChanges(DisplayBrightnessEventHandler e);
     }
 }

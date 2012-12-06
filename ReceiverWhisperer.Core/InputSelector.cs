@@ -8,6 +8,6 @@ namespace ReceiverWhisperer.Core {
         Input ActiveInput { get; set; }
         IEnumerable<Input> AvailableInputs { get; }
 
-        void SubscribeInputChanges(ReceiverEventHandler e);
+        void SubscribeInputChanges(InputEventHandler e);
     }
 }

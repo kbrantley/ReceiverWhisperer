@@ -22,37 +22,37 @@ namespace TestHarness {
             r.Disconnect();
         }
 
-        private static void VolumeChanged(Object sender, ReceiverEventArgs e) {
-            Console.WriteLine("Volume: " + ((VolumeEventArgs)e).Volume);
+        private static void VolumeChanged(Object sender, VolumeEventArgs e) {
+            Console.WriteLine("Volume: " + e.Volume);
         }
 
-        private static void MuteChanged(Object sender, ReceiverEventArgs e) {
-            if (((MuteEventArgs)e).Muted)
+        private static void MuteChanged(Object sender, MuteEventArgs e) {
+            if (e.Muted)
                 Console.WriteLine("Muted");
             else
                 Console.WriteLine("Not Muted");
         }
 
-        private static void DisplayBrightnessChanged(Object sender, ReceiverEventArgs e) {
-            Console.WriteLine("Display Brightness: " + ((DisplayBrightnessEventArgs)e).Brightness);
+        private static void DisplayBrightnessChanged(Object sender, DisplayBrightnessEventArgs e) {
+            Console.WriteLine("Display Brightness: " + e.Brightness);
         }
 
-        private static void PowerChanged(Object sender, ReceiverEventArgs e) {
-            if (((PowerEventArgs)e).Powered)
+        private static void PowerChanged(Object sender, PowerEventArgs e) {
+            if (e.Powered)
                 Console.WriteLine("Power On");
             else
                 Console.WriteLine("Power Off");
         }
 
-        private static void SleepChanged(Object sender, ReceiverEventArgs e) {
-            if (((SleepEventArgs)e).SleepTimer == 0)
+        private static void SleepChanged(Object sender, SleepEventArgs e) {
+            if (e.SleepTimer == 0)
                 Console.WriteLine("Sleep off");
             else
-                Console.WriteLine("Sleep Timer: " + ((SleepEventArgs)e).SleepTimer + " minutes");
+                Console.WriteLine("Sleep Timer: " + e.SleepTimer + " minutes");
         }
 
-        private static void InputChanged(Object sender, ReceiverEventArgs e) {
-            Console.WriteLine("Active Input: " + ((InputEventArgs)e).Input.Name);
+        private static void InputChanged(Object sender, InputEventArgs e) {
+            Console.WriteLine("Active Input: " + e.Input.Name);
         }
     }
 }

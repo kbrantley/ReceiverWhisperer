@@ -11,7 +11,7 @@ namespace ReceiverWhisperer.Onkyo {
         private List<Input> _validInputs;
         public Input ActiveInput { get { return _currentInput; } set { value.Activate(); } }
 
-        public event ReceiverEventHandler OnInputChanged;
+        public event InputEventHandler OnInputChanged;
 
         public IEnumerable<Input> AvailableInputs {
             get { if (_validInputs == null) BuildInputs(); return _validInputs; }
@@ -30,11 +30,11 @@ namespace ReceiverWhisperer.Onkyo {
             }
         }
 
-        public void SubscribeInputChanges(ReceiverEventHandler e) {
+        public void SubscribeInputChanges(InputEventHandler e) {
             if (OnInputChanged == null)
-                OnInputChanged = new ReceiverEventHandler(e);
+                OnInputChanged = new InputEventHandler(e);
             else
-                OnInputChanged += new ReceiverEventHandler(e);
+                OnInputChanged += new InputEventHandler(e);
         }
 
         private void BuildInputs() {
