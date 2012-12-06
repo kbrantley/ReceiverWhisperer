@@ -10,7 +10,6 @@ namespace ReceiverWhisperer.Onkyo {
 
     public class MessageEventArgs : EventArgs {
         public String Message { private set; get; }
-    
         public MessageEventArgs(String message) {
             this.Message = message;
         }
