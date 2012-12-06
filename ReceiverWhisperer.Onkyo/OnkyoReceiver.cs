@@ -57,13 +57,5 @@ namespace ReceiverWhisperer.Onkyo {
             }
         }
 
-
-        public IEnumerable<Input> ValidInputs {
-            get { throw new NotImplementedException(); }
-        }
-
-        public Input CurrentInput {
-            get { throw new NotImplementedException(); }
-        }
     }
 }
