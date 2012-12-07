@@ -20,6 +20,11 @@ namespace ReceiverWhisperer.Onkyo {
         public OnkyoInputSelector(OnkyoReceiver receiver) {
             _receiver = receiver;
             BuildInputs();
+            _receiver._ipp.Subscribe("SLI", OnConnect);
+        }
+
+        private void OnConnect(Object sender, EventArgs e) {
+            new OutboundPacket(_receiver, "SLIQSTN");
         }
 
         public void SwitchInput(OnkyoInput input) {
