@@ -9,7 +9,12 @@ namespace TestHarness {
     class Program {
 
         static void Main(string[] args) {
-            Receiver r = new OnkyoReceiver("TX-NR515", "10.254.254.98", 60128);
+            if (args.Length != 2) {
+                Console.WriteLine("Please provide the IP and port to connect to the receiver.");
+                Environment.Exit(-1);
+            }
+
+            Receiver r = new OnkyoReceiver("TX-NR515", args[0], System.Convert.ToInt32(args[1]));
             r.Connect();
             Console.WriteLine("Connected.");
             r.VolumeControl.SubscribeVolumeChanges(VolumeChanged);
