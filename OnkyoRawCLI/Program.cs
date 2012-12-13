@@ -22,6 +22,7 @@ namespace OnkyoRawCLI {
             if (args.Length == 2) {
                 port = System.Convert.ToInt32(args[1]);
             }
+            Console.Write("Connecting... ");
             receiverSocket.Connect(args[0], port);
             NetworkStream receiverStream = receiverSocket.GetStream();
 
@@ -29,6 +30,8 @@ namespace OnkyoRawCLI {
             ipp.SetStream(receiverStream);
             Thread inboundThread = new Thread(ipp.ProcessPackets);
             inboundThread.Start();
+
+            Console.WriteLine("connected.");
 
             bool quitting = false;
             while (!quitting) {
